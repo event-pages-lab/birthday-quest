@@ -1,0 +1,471 @@
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+
+  background:
+    radial-gradient(circle at top,
+      rgba(226,242,244,.95),
+      transparent 22%),
+
+    radial-gradient(circle at 20% 20%,
+      rgba(127,213,219,.45),
+      transparent 28%),
+
+    radial-gradient(circle at 80% 30%,
+      rgba(21,182,200,.30),
+      transparent 26%),
+
+    linear-gradient(
+      180deg,
+      #8ee3e8 0%,
+      #5fd3dd 18%,
+      #2dbfd0 42%,
+      #159ab8 70%,
+      #0d7c97 100%
+    );
+
+  background-attachment: fixed;
+  color: white;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(rgba(255,255,255,.55) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: .45;
+  pointer-events: none;
+}
+
+.app {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.app::before {
+  content: "✦ ✧ ✦ ✧ ✦";
+  display: block;
+  text-align: center;
+  margin-bottom: 14px;
+  color: rgba(255,255,255,.85);
+  letter-spacing: 10px;
+  text-shadow: 0 0 12px rgba(255,255,255,.8);
+}
+.app::after {
+  content: "✧ ✦ ✧ ✦ ✧";
+  display: block;
+  text-align: center;
+  margin-top: 26px;
+  margin-bottom: 8px;
+  color: rgba(255,255,255,.85);
+  letter-spacing: 10px;
+  text-shadow:
+    0 0 12px rgba(255,255,255,.8);
+}
+
+.hero,
+.quest,
+.secret {
+  background: rgba(255,255,255,.18);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,.35);
+  box-shadow:
+    0 0 24px rgba(255,255,255,.12);
+}
+
+.hero {
+  padding: 32px 20px;
+  border-radius: 24px;
+  text-align: center;
+}
+
+.label {
+  color: rgba(255,255,255,.92);
+  font-size: 13px;
+  letter-spacing: 1.2px;
+  text-shadow:
+    0 0 12px rgba(255,255,255,.55);
+}
+
+h1 {
+  margin: 8px 0;
+  font-size: 36px;
+}
+
+.hero h1 {
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #dfffff 20%,
+    #a8ffff 45%,
+    #ffffff 70%,
+    #7ee7ff 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 0 18px rgba(255,255,255,.18);
+}
+
+.quests, .secret {
+  margin-top: 24px;
+}
+
+.quest {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  gap: 16px;
+  padding: 16px;
+  margin-top: 12px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(140,247,255,.15);
+  backdrop-filter: blur(6px);
+  transition: transform .25s, box-shadow .25s;
+}
+
+.quest h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.quest p {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: #d7e8ff;
+}
+
+button {
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 14px;
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #c8ffff 30%,
+      #7fd5db 70%,
+      #15b6c8 100%
+    );
+  color: #0d5060;
+  font-weight: bold;
+  box-shadow:
+    0 0 18px rgba(255,255,255,.28);
+}
+
+button:hover {
+  transform: scale(1.06);
+  box-shadow:0 0 24px rgba(255,255,255,.55);
+}
+
+.quest.clear {
+  background: rgba(255, 215, 120, .25);
+}
+
+.quest.clear button {
+  background: #ffd978;
+}
+
+.secret {
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(109,227,232,.35);
+  box-shadow:
+    0 0 20px rgba(109,227,232,.12);
+}
+
+.clear-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.65);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  z-index: 2000;
+}
+
+.clear-modal.show {
+  display: flex;
+}
+
+.clear-modal span {
+  display: block;
+  font-size: 56px;
+}
+
+#password-screen {
+  min-height: 100vh;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  background:
+    radial-gradient(rgba(255,255,255,.15) 1px, transparent 1px),
+    radial-gradient(circle at top, rgba(109, 227, 232, 0.25), transparent 35%),
+    linear-gradient(#0d2047, #051022 75%);
+  background-size: 24px 24px, auto, auto;
+}
+
+#password-screen h1 {
+  margin: 0;
+  font-size: 32px;
+  letter-spacing: 2px;
+  font-family: 'Cinzel', serif;
+}
+
+#password-screen::before {
+  content: "Birthday Quest";
+  color: #9fd3ff;
+  font-size: 14px;
+  letter-spacing: 1px;
+  font-family: 'Marcellus', serif;
+}
+
+#password-screen::after {
+  content: "誕生日8ケタを入力しログインせよ";
+  color: #d7e8ff;
+  font-size: 14px;
+}
+
+#password-input {
+  width: 240px;
+  padding: 13px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.35);
+  background: rgba(255,255,255,.92);
+  letter-spacing: 6px;
+  font-size: 18px;
+  text-align: center;
+}
+
+#password-screen button {
+  margin-top: 4px;
+}
+
+.memo-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.memo-modal.show {
+  display: flex;
+}
+.memo-box {
+  width: 82%;
+  max-width: 320px;
+  padding: 24px;
+  border-radius: 24px;
+  background: rgba(255,255,255,.18);
+  backdrop-filter: blur(18px);
+  text-align: center;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.memo-box input {
+  width: 100%;
+  margin: 12px 0 14px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: none;
+  box-sizing: border-box;
+  display: block;
+}
+
+.memo-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 20px;
+  line-height: 1;
+}
+.clear-box {
+  padding: 32px 28px;
+  border-radius: 28px;
+  background: rgba(255,255,255,.2);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,.4);
+  box-shadow: 0 0 36px rgba(255,255,255,.35);
+  animation: clearPop .45s ease;
+}
+
+.clear-title {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: 2px;
+}
+
+.clear-sub {
+  margin: 10px 0 0;
+  font-size: 14px;
+  opacity: .9;
+}
+
+@keyframes clearPop {
+  0% { transform: scale(.75); opacity: 0; }
+  70% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+.ticket {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 7px 14px;
+  border: 1px dashed rgba(255,255,255,.75);
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #fff;
+  background: rgba(255,255,255,.14);
+}
+
+#randomMissionBox {
+  margin-top: 14px;
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(140,247,255,.15);
+}
+
+#randomMissionBox.clear {
+  background: rgba(255, 215, 120, .25);
+  border-color: rgba(255, 217, 120, .7);
+}
+
+#randomMissionBox.clear button {
+  background: #ffd978;
+}
+
+.letter-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 40, 60, .75);
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.letter-modal.show {
+  display: flex;
+}
+
+.letter-paper {
+  width: 100%;
+  max-width: 360px;
+  min-height: 480px;
+  padding: 24px 22px;
+  border-radius: 18px;
+  background:
+    linear-gradient(#ffffff 0 0) padding-box,
+    linear-gradient(135deg, #ffe6a7, #7fd5db) border-box;
+  border: 4px solid transparent;
+  color: #2b3a42;
+  box-shadow: 0 18px 50px rgba(0,0,0,.35);
+  text-align: left;
+  position: relative;
+  box-sizing: border-box;
+  line-height: 28px;
+  font-size: 13px;
+}
+
+.letter-paper h2 {
+  text-align: center;
+  margin: 18px 0 28px;
+  color: #0d7c97;
+  font-family: 'Marcellus', serif;
+}
+
+.letter-stamp {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  font-size: 34px;
+  transform: rotate(10deg);
+}
+
+.letter-lines {
+  margin-top: 10px;
+  padding: 0 2px;
+  line-height: 28px;
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 26px,
+      rgba(13,124,151,.35) 26px,
+      rgba(13,124,151,.35) 28px
+    );
+  background-size: 100% 28px;
+}
+.letter-lines p {
+  margin: 0 0 0;
+  padding: 0;
+  border: none;
+}
+
+.letter-paper button {
+  display: block;
+  margin: 28px auto 0;
+}
+
+.quest-end {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,.25), transparent 30%),
+    linear-gradient(#0d2047, #051022 75%);
+  color: white;
+  z-index: 4000;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.quest-end.show {
+  display: flex;
+}
+
+.quest-end h1 {
+  font-size: 42px;
+  letter-spacing: 4px;
+  font-family: 'Cinzel', serif;
+}
+
+.secret.clear {
+  background: rgba(255, 215, 120, .25);
+  border-color: rgba(255, 217, 120, .7);
+}
+
+.secret.clear button {
+  background: #ffd978;
+}

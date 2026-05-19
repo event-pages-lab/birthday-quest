@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>25th Anniversary Quest</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Marcellus&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- パスワード画面 -->
+  <div id="password-screen">
+    <h1>OPEN THE GATE</h1>
+    <input type="password" id="password-input">
+    <button onclick="checkPassword()">START QUEST</button>
+  </div>
+
+    <div id="app" style="display: none;">
+      <main class="app">
+        <section class="hero">
+            <p class="ticket">SPECIAL BIRTHDAY PASSPORT</p>
+            <p class="label">Tokyo DisneySea 25th Anniversary</p>
+            <h1>2026/5/21</h1>
+            <h1>Birthday Quest</h1>
+            <p>31歳の誕生日ミッションスタート！</p>
+        </section>
+
+        <section class="quests">
+        <h2>MAIN QUEST</h2>
+
+        <div class="quest main-quest" data-id="food">
+            <div>
+            <h3>白くて固美味いパンを食べよう</h3>
+            <p>まずはいつものやつで腹ごしらえ。</p>
+            </div>
+            <button>未達成</button>
+        </div>
+
+        <div class="quest main-quest" data-id="photo">
+            <div>
+            <h3>25周年らしい記念写真を撮れ</h3>
+            <p>今日はたくさん写真撮ろう。</p>
+            </div>
+            <button>未達成</button>
+        </div>
+
+        <div class="quest main-quest" data-id="birthday">
+            <div>
+            <h3>キャストさんから祝福を受ける準備をしよう</h3>
+            <p>バースデーシールを装備せよ。</p>
+            </div>
+            <button>未達成</button>
+        </div>
+        </section>
+
+        <section class="quests">
+          <h2>BONUS QUEST</h2>
+          <div id="subMissions"></div>
+        </section>
+
+        <section class="secret" id="secret">
+          <h2>Secret Mission</h2>
+          <p id="secretText">？？？？？</p>
+          <button
+            id="secretBtn"
+            type="button"
+            style="display:none;"
+          >
+            ミッションクリア！
+          </button>
+        </section>
+
+        <section class="secret">
+          <h2>🎲 おまけミッション</h2>
+
+          <button id="randomBtn" type="button">ミッションを受け取る</button>
+
+          <div id="randomMissionBox" style="display:none;">
+            <p id="randomMission"></p>
+            <button id="clearRandomBtn" type="button">CLEAR</button>
+          </div>
+        </section>
+
+        <section class="secret">
+          <details>
+            <summary>クリア履歴を見る（<span id="clearCount">0</span>個）</summary>
+            <ul id="clearList"></ul>
+          </details>
+        </section>
+    </main>
+
+  <div class="memo-modal" id="memoModal">
+    <div class="memo-box">
+      <h3 id="memoTitle"></h3>
+      <input type="text" id="memoInput">
+      <button id="saveMemo" type="button">COMPLETE</button>
+    </div>
+  </div>
+  <div class="clear-modal" id="clearModal">
+  <div class="clear-box">
+    <p class="clear-title">MISSION CLEAR!</p>
+    <p class="clear-sub" id="clearSub">新しい思い出を記録しました</p>
+    <span>✨</span>
+  </div>
+</div>
+
+<section class="secret">
+  <h2>Final</h2>
+  <p>帰りに最後のボタンを押してね。</p>
+  <button id="finishBtn" type="button">クエストを終える</button>
+</section>
+
+<div class="letter-modal" id="birthdayModal">
+  <div class="letter-paper">
+    <div class="letter-stamp">🎂</div>
+
+    <h2>Happy Birthday!</h2>
+
+    <div class="letter-lines">
+      <p>31歳、お誕生日おめでとう！</p>
+      <p>
+      あいにくの雨だったけど
+      なんちゃってクエスト楽しめましたか？
+      </p>
+      <p>
+      雨ディズニーといえば、
+      大学生なりたて？くらいの頃に
+      台風の中ディズニーへ行って、
+      ガラガラのパークで暴れまくった結果、
+      帰りの電車が止まりそうで
+      危うく帰れなくなりかけたことを思い出します。笑
+      </p>
+      <p>
+      30代もあっという間にレベルが1上がって、
+      これからもっと大人になっていくわけだけれど
+      いつまでもアホみたいなことで笑って、
+      学生の頃と変わらない楽しみ方ができたらいいな〜と思っています。
+      </p>
+      <p>
+      これからの30代もよろしく頼みます。
+      </p>
+      <p>
+      今年もいろんな場所へ遊びに行こう！
+      </p>
+    </div>
+
+    <button id="closeBirthdayBtn" type="button">手紙を閉じる</button>
+  </div>
+</div>
+
+<div class="quest-end" id="questEnd">
+  <div>
+    <h1>QUEST END</h1>
+    <p>今年のミッションは終了しました。</p>
+  </div>
+</div>
+
+    <script>
+    function checkPassword() {
+      const password = document.getElementById("password-input").value;
+
+      if (password === "19950514") {
+        document.getElementById("password-screen").style.display = "none";
+        document.getElementById("app").style.display = "block";
+      } else {
+        alert("パスワードが違います");
+      }
+    }
+    </script>
+  <script src="script.js"></script>
+
+</body>
+</html>
